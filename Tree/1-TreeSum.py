@@ -11,7 +11,18 @@ def tree_sum(root):
     sum+=tree_sum(root.right)
     sum+=tree_sum(root.left)
     return sum
-
+def tree_sum2(root):
+    qu = []
+    qu.append(root)
+    sum = 0
+    while len(qu):
+        current = qu.pop(0)
+        sum+=current.val
+        if current.left:
+            qu.append(current.left)
+        if current.right:
+            qu.append(current.right)
+    return sum
 
 a = Node(1)
 b = Node(6)
@@ -30,4 +41,5 @@ c.right = f
 e.left = g
 f.right = h
 
-print(tree_sum(None)) # -> 21
+print(tree_sum(a)) # -> 21
+print(tree_sum2(a))
