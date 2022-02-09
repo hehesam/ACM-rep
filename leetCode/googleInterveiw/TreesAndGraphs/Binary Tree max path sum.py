@@ -12,6 +12,8 @@ def level_order_travelsal(root, arr, i):
         return root
 
 
+
+
 def BFS(root):
         print(root.val)
         if root.left:

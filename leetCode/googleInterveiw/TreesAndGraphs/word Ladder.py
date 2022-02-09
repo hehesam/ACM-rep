@@ -1,57 +1,45 @@
-def pairWords(s1, s2):
-    if len(s1) != len(s2):
-        return False
-    count = 0
-    for i in range(len(s1)):
-        if s2[i] != s1[i]:
-            count += 1
-    if count > 1 or count == 0:
-        return False
-    else:
-        return True
 
-
-def graphMaker(wordList):
-    graph = {}
+def allForms(wordList):
+    combinations = {}
     for word in wordList:
-        if word not in graph:
-            graph[word] = []
-        for w in wordList:
-            if pairWords(word, w):
-                if w not in graph[word]:
-                    graph[word].append(w)
-                    if w not in graph:
-                        graph[w] = []
-                    graph[w].append(word)
-    return graph
+        for i in range(len(word)):
+            starword = word[:i]+'*'+word[i+1:]
+            if starword not in combinations:
+                combinations[starword] = []
+            combinations[starword].append(word)
+    return combinations
 
 
-def shortestPath(graph, a, b):
-    count = 0
-    que = []
-    que.append(a)
+def iterate(wordList, str,stp, combination):
+    que = [(str, 1)]
+    visited = {}
     while len(que):
-        count += 1
-        current = que.pop(0)
-        if current == b:
-            return count
-        for i in graph[current]:
-            que.append(i)
-
-
-class Solution:
-
-    def ladderLength(self, beginWord: str, endWord: str, wordList: [str]) -> int:
-        wordList.append(beginWord)
-
-        graph = graphMaker(wordList)
-        print(graph)
-        print(shortestPath(graph, beginWord, endWord))
-
-
+        print(que)
+        current, distance = que.pop(0)
+        visited[current] = True
+        if current == stp:
+            return distance
+        for i in range(len(current)):
+            starWord = current[:i]+'*'+current[i+1:]
+            if starWord in combination:
+                for x in combination[starWord]:
+                    if x not in visited:
+                        visited[x] = True
+                        que.append((x,distance+1))
+            else:
+                return 0
+    return 0
 
 
 
+wordList = ["hot","dot","dog","lot","log","cog"]
+beginWord = "hit"
+endWord = "cog"
+wordList.append(beginWord)
+combination = allForms(wordList)
+res = iterate(wordList, beginWord, endWord, combination)
+print(res)
+# print(letter_iterator(alph, wordList, beginWord,endWord))
 
 
 
