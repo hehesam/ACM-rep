@@ -27,21 +27,47 @@ def breaker(s, wordDict):
         return False
 
 
+
+def DP2(s, wordDict):
+
+    # size = len(s)
+
+    dp = [False for i in range(len(s)+1)]
+
+    dp[0] = True
+
+    for i in range(0, len(s)+1):
+        for word in wordDict:
+            if len(word)+i <= len(s):
+                if s[i:i+len(word)] == word and not dp[i+len(word)]:
+                    dp[i+len(word)] = dp[i]
+
+
+
+    return dp[len(s)]
+
+
+
+
 s = "leetcode"
 wordDict = ["leet","code"]
 
-s = "catsandog"
-wordDict = ["cats","dog","sand","and","cat"]
+# s = "catsandog"
+# wordDict = ["cats","dog","sand","and","cat"]
 
+# s = "aaaaaaa"
+# wordDict = ['aaaa', 'aaa']
+#
 # s = "cars"
 # wordDict = ["car","ca","rs"]
 #
 # s = "applepenapple"
 # wordDict = ["apple","pen"]
 # #
-# s = "bb"
-# # wordDict = ["a","b","bbb","bbbb"]
+s = "bb"
+wordDict = ["a","b","bbb","bbbb"]
 # s = 'hesamsamsamsamhesam'
 # wordDict = ['b']
 
-print(breaker(s, wordDict))
+# print(breaker(s, wordDict))
+print(DP2(s, wordDict))
