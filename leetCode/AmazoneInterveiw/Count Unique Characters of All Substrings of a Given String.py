@@ -99,7 +99,7 @@ def way3(s):
 
     return sum
 
-
+s = "LEETCODE"
 print(way1(s),way2(s), way3(s))
 
 
