@@ -32,7 +32,7 @@ print(sorted(arr,key(2)))
 
 
 print(let)
-    ll = sorted(let.keys())
+    # ll = sorted(let.keys())
     res = []
     i = 0
 
