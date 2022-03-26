@@ -48,6 +48,18 @@ def dfs(word, words):
     return False
 
 
+def dfs2(word, words):
+    for i in range(1,len(word)):
+        prefix = word[:i]
+        suffix = word[i:]
+        print(prefix,suffix)
+        if suffix in words and prefix in words:
+            return True
+        if prefix in words and dfs2(suffix, words):
+            return True
+    return False
+
+
 def way2(words):
     words = set(words)
     print(words)
