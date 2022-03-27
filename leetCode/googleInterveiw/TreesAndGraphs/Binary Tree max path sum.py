@@ -37,6 +37,7 @@ def max_path_sum(root, max_path):
 
 
 arr = [-10,9,20,None,None,15,7]
+arr = [3,9,20,None,None,15,7]
 root = level_order_travelsal(None, arr, 0)
 
 # BFS(root)
