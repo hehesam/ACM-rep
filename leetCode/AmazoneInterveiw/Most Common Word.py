@@ -1,37 +1,3 @@
-
-
-def way1(paragraph, banned):
-    dic = {}
-    back = 0
-
-    for i in range(len(paragraph)):
-        if paragraph[i] == " ":
-            word = paragraph[back:i]
-            if '.' in word or ',' in word:
-                word = word[:len(word)-1]
-            if word not in dic:
-                dic[word] = 0
-            dic[word] += 1
-            back = i+1
-
-    word = paragraph[back:]
-    if '.' in word or  ',' in word:
-        word = word[:len(word)-1]
-    if word not in dic:
-        dic[word] = 0
-    dic[word] += 1
-
-    MAX = 0
-    ww = ""
-    for key, value in dic.items():
-        if key not in banned:
-            if MAX < value:
-                MAX = value
-                ww = key
-
-    return ww
-
-
 def way2(paragraph, banned):
     dic = {}
 
