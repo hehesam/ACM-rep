@@ -14,7 +14,7 @@ def helper(slow,fast):
             return ret.next
         else:
             return slow.next
-
+    
 def MaximumPages(head:MyNode):
 
     slow = head

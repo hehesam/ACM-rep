@@ -1,42 +1,41 @@
+from collections import defaultdict, deque
+class Solution:
 
-import time
+    def findOrder(self, numCourses, pre_req):
+        """
+        :type numCourses: int
+        :type pre_req: List[List[int]]
+        :rtype: List[int]
+        """
 
-def sum(num):
-    res = 0
-    while num :
-        a = num%10
-        res += a**2
-        num //= 10
-    return res
+        # Prepare the graph
+        adj_list = defaultdict(list)
+        indegree = {}
+        for dest, src in pre_req:
+            adj_list[src].append(dest)
 
-def converging(n):
-    dic = {}
-    while 1:
+            # Record each node's in-degree
+            indegree[dest] = indegree.get(dest, 0) + 1
 
+        # Queue for maintainig list of nodes that have 0 in-degree
+        Q = deque([k for k in range(numCourses) if k not in indegree])
 
-        if n == 1:
-            return True
+        res = []
 
-        n = sum(n)
+        # Until there are nodes in the Q
+        while Q:
 
-        if n in dic:
-            return False
-        dic[n] = True
+            # Pop one node with 0 in-degree
+            vertex = Q.popleft()
+            res.append(vertex)
 
+            # Reduce in-degree for all the neighbors
+            if vertex in adj_list:
+                for neighbor in adj_list[vertex]:
+                    indegree[neighbor] -= 1
 
+                    # Add neighbor to Q if in-degree becomes 0
+                    if indegree[neighbor] == 0:
+                        Q.append(neighbor)
 
-
-n =19
-
-
-# print(converging(13))
-
-c = ''
-s1 = time.time()
-for i in range(9999999):
-    c += 'C'
-print('->', time.time()-s1)
-
-s1 = time.time()
-a = c[9999997:9999998]
-print("->", time.time()-s1)
+        return res if len(res) == numCourses else []

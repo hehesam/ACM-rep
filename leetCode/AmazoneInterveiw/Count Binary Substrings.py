@@ -9,12 +9,13 @@ def way1(s):
             arr.append(tmp)
             tmp = ""
         tmp += i
+        print(arr)
     arr.append(tmp)
-
+    print(arr)
     count = 0
     for i in range(1,len(arr)):
         count += min(len(arr[i-1]), len(arr[i]))
-    # print(arr)
+    print(arr)
 
     return count
 
@@ -43,5 +44,5 @@ def way2(s):
 
 
 s = "00110011"
-s = "10101"
+# s = "10101"
 print(way2(s))

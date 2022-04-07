@@ -19,9 +19,9 @@ def DP(nums):
                 mat[i][j] = nums[j]
             if mat[i][j] > max:
                 max = mat[i][j]
-            # printer(mat)
-            # print('\n\n')
-            # time.sleep(1)
+            printer(mat)
+            print('\n\n')
+            time.sleep(1)
 
     return max
 
@@ -167,8 +167,8 @@ def maxSubArray(nums, left, right):
     # The largest of the 3 is the answer for any given input array.
     return max(best_combined_sum, left_half, right_half)
 
-# nums = [-2,1,-3,4,-1,2,1,-5,4]
-nums = [-1]
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+# nums = [-1]
 
 
 # nums = [1, -3]
@@ -177,7 +177,7 @@ nums = [-1]
 
 
 # print(nums)
-# print(DP(nums))
+print(DP(nums))
 # max = 0
 # for i in range(len(nums)):
 #     res = REC(nums, i , 0, max)
